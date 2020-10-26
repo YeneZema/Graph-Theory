@@ -1,0 +1,126 @@
+\documentclass[paper=a4, fontsize=12pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm,amssymb} % Math packages
+\usepackage{graphicx,wrapfig,lipsum}
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\usepackage[margin=1in]{geometry}  % set the margins to 1in on all sides
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+
+
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+% various theorems, numbered by section
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+\DeclareMathOperator{\id}{id}
+
+\newcommand{\bd}[1]{\mathbf{#1}}  % for bolding symbols
+\newcommand{\RR}{\mathbb{R}}      % for Real numbers
+\newcommand{\ZZ}{\mathbb{Z}}      % for Integers
+\newcommand{\col}[1]{\left[\begin{matrix} #1 \end{matrix} \right]}
+\newcommand{\comb}[2]{\binom{#1^2 + #2^2}{#1+#2}}
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{
+		%\vspace{-1in} 	
+		\usefont{OT1}{bch}{b}{n}
+		\normalfont \normalsize \textsc{Exam 1} \\ [25pt]
+		\horrule{0.5pt} \\[0.4cm]
+		\huge Graph Theory \\
+		\horrule{2pt} \\[0.5cm]
+}
+\author{
+		\normalfont 								\normalsize
+        Miliyon Tilahun (NSR/4137/05)\\[-3pt]		\normalsize
+        \today
+}
+\date{}
+
+
+%%% Begin document
+\begin{document}
+\maketitle
+
+\subsection*{Solve the following problems by showing all the necessary steps.}
+
+\begin{enumerate}
+  \item Show that either a graph or its complement is connected.
+  \item Show that at least two vertices in a graph of order $2$  or more have the same degree.
+  \item Show that any non trivial tree has at least two pendant(degree $1$) vertices.
+\end{enumerate}
+
+\subsection*{Solution}
+
+\begin{enumerate}
+  \item Let $G$ be a graph(finite)\\
+  Suppose $G$ is disconnected and assume $G_1,G_2,\ldots,G_n$ the connected components of $G$.\\
+  Now, $G = G_1+G_2+\ldots+G_n$ where $+$ is the disjoint union operator.\\
+  Thus,
+  \begin{align*}
+   \overline{G} &=\overline{G_1+G_2+\ldots+G_n}\\
+              &=\overline{G_1}\vee\overline{G_2}\vee \ldots \vee\overline{G_n}
+  \end{align*}
+  where $\vee$ is the join operator.\\
+  Hence $\overline{G}$ is connected. i.e. whenever $G$ is disconnected $\overline{G}$ is connected.\\
+  That was to be shown!
+
+  \item Let $G$ be a graph of order $n\geq2$.\\
+  The possible values for $\deg(v_i)$ are $n-1,n-2,\ldots,2,1$\\
+  It is a kind of pigeonhole principle; we have $n$ vertices(pigeons) and $n-1$ possible values of degree(hole).\\
+  Which implies there has to be at least two vertices(pigeons) with the same degree(for pigeons in the same hole).
+  \item Suppose not(there is at most one vertex of degree one(pendant)) and assume $T$ is order $n\geq2$.\\
+  We know that $||T||=n-1$ (which can be proved using induction).\\
+  Thus, handshaking lemma tells us
+  \begin{align}\label{pendant1}
+  \sum_{v\in V(T)}\deg(v)=2(n-1)
+  \end{align}
+  But from our assumption there is at most one pendant vertex. This implies
+  \begin{align}\label{pendant2}
+  \sum_{v\in V(T)}\deg(v)\geq 2(n-1)=2n-2+1=2n-1
+  \end{align}
+  Putting (\ref{pendant1}) and (\ref{pendant2}) together
+  \begin{align*}
+  2(n-1)\geq 2n-1 \qquad \text{ which is a contradiction!}
+  \end{align*}
+  Therefore, our assumption was false hence.
+\end{enumerate}
+\end{document}

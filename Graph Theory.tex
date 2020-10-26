@@ -1,0 +1,123 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}  % set the margins to 1in on all sides
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage[colorlinks=false, pdfborder={0 0 0}]{hyperref}
+\usepackage{cleveref}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+\begin{document}
+
+\title{\textbf{Graph Theory}}
+\author{Miliyon T.}
+\maketitle
+\subsection*{Basic Definitions}
+
+\section{Basic Facts}
+\begin{thm}
+Let $G$ be a $\left({p, q}\right)$ graph, which may be a multigraph or a loop-graph, or both.
+
+Let $V = \left\{{v_1, v_2, \ldots, v_p}\right\}$ be the vertex set  of $G$.
+
+
+Then $\displaystyle \sum_{i \mathop = 1}^p \deg_G \left({v_i}\right) = 2 q$
+where $\deg_G \left({v_i}\right)$ is the degree of vertex $v_i$.
+
+
+That is, the sum of all the degrees of all the vertices of a graph is equal to \underline{twice} the total number of its edges.
+This result is known as the \boxed{Handshaking~Lemma}.
+
+\begin{proof}
+In the notation $\left({p, q}\right)$ graph, $p$ is its order and $q$ its size.
+
+That is, $p$ is the number of vertices in $G$, and $q$ is the number of edges in $G$.
+
+Each  edge is incident to exactly two vertices.
+
+The degree of each vertex is defined as the number of edges to which it is incident.
+
+So when we add up the degrees of all the vertices, we are counting all the edges of the graph twice.
+\end{proof}
+\end{thm}
+
+\begin{cor}
+The number of odd vertices(vertices of odd degree) in a graph must be  even.
+\end{cor}
+
+
+\subsection{Historical Note}
+This result was first given by Leonhard Paul Euler in his 1736 paper ''Solutio problematis ad geometriam situs pertinentis'', widely considered as the first ever paper in the field of graph theory.
+
+\section{Tree}
+
+\begin{defn}
+A tree is a connected graph with no cycles.
+\end{defn}
+
+\begin{lem}
+For any tree T of order $n$, $|E|=n-1$
+\end{lem}
+\begin{proof}
+By Induction
+
+For $n=1$, $E=1-1=0$ True!( trivial graph).
+
+Suppose it is true for any order of vertices which are less than $ n$.
+Now let's remove an edge $vu$ from $T$. Since every edge on tree is a bridge we will get two components $T_1$ and $T_2$. Clearly, the order of $T_1$ and $T_2$ are less than $n$. Hence by induction assumption $|T_1|=v(T_1)-1$ and $|T_2|=v(T_2)-1$
+
+Now,
+\begin{align*}
+|E|&=v(T_1)-1+v(T_2)-1+1\\
+&=v(T_1)+v(T_2)-1\\
+&=v(T)-1\\
+\end{align*}
+
+
+\end{proof}
+
+\begin{thm}
+Every non trivial tree has at least two pendant vertices.
+\end{thm}
+\begin{proof}
+By the Handshake Lemma, $$\sum_{v \in V(T)} d(v) = 2n - 2.$$ Since every vertex except the one leaf has degree at least $2$, we get $$2 \sum_{v \in V(T)} d(v) \geq 2[2(n-1) + 1] = 4n - 2 > 2(n-1),$$ a contradiction.
+\end{proof}
+
+Show that every graph with two or more nodes contains two nodes that have equal
+degrees.
+
+Let us try to prove that every graph with two or more nodes have unique
+degrees.  We know that the set of possible degrees for a graph with $n$ vertices
+is:
+
+\[
+0,1,\ldots,n-1
+\]
+
+This gives us a total of $n$ unique degrees to assign to our $n$ vertices. We
+must assign a degree of zero to one vertex. A vertex with degree zero is
+connected to no other vertices.  Let us now assign the degree $n-1$ to a
+vertice.  This vertice is connected to every other vertice in the graph.
+This is a contradiction, because it is impossible to simultaneously have a
+vertice that is connected to every other vertice, and a vertice that is
+connected to none.  Therefore, there are at least two vertices with the same
+degree in any graph with at least 2 vertices. 
+
+\end{document}
